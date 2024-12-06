@@ -1,12 +1,7 @@
 abstract class ErrorMessages {
-  static const String errorOccurred = 'Xəta baş verdi';
-  static const String server = 'Server xətası baş verdi';
-  static const String internet = 'İnternet xətası baş verdi';
+  static const String errorOccurred = 'Unknown error occured';
+  static const String server = 'Server error';
+  static const String internet = 'No Internet connection';
   static const String authentication = 'Not Authenticated';
-  static const String addressDetailsNotFound =
-      'Seçilmiş ünvana uyğun nəticə tapılmadı';
-
-  // Validations
-  static const String phoneNumber = 'Telefon nömrəsi düzgün deyil';
-  static const String gender = 'Cins qeyd edilməlidir';
+  static const String emailInUse = 'This email is already in use';
 }

@@ -1,5 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import '../../data/auth/repository.dart';
+import '../../data/auth/service.dart';
+import '../../data/comment/repository.dart';
+import '../../data/comment/service.dart';
 import '../../data/get_category/repository.dart';
 import '../../data/get_category/service.dart';
 import '../../data/get_news/repository.dart';
@@ -41,4 +45,10 @@ Future<void> initializeDependencies() async {
     () => CategoryRepository(dio),
   );
   getIt.registerLazySingleton<ICategoryService>(() => CategoryService(getIt()));
+
+  getIt.registerLazySingleton<IAuthRepository>(() => AuthRepository());
+  getIt.registerLazySingleton<IAuthService>(() => AuthService(getIt()));
+
+  getIt.registerLazySingleton<ICommentRepository>(() => CommentRepository());
+  getIt.registerLazySingleton<ICommentService>(() => CommentService(getIt()));
 }
