@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Mews Admin Panel',
+        title: 'Mews',
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: const Color(0xfff7f7f7),
           textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
