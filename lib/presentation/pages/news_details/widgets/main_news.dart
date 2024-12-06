@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:news_client/core/extension.dart';
 import 'package:news_client/data/get_news/response.dart';
-import 'package:news_client/presentation/widgets/profile_photo.dart';
-
+import 'package:news_client/presentation/pages/news_details/widgets/comments_section.dart';
 import '../../../../responsive.dart';
 
-class NewsDetailsMainNews extends StatelessWidget {
+class NewsDetailsMainNews extends StatefulWidget {
   const NewsDetailsMainNews({super.key, required this.newsDetails});
   final NewsDetails newsDetails;
+
+  @override
+  State<NewsDetailsMainNews> createState() => _NewsDetailsMainNewsState();
+}
+
+class _NewsDetailsMainNewsState extends State<NewsDetailsMainNews> {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
@@ -34,7 +39,7 @@ class NewsDetailsMainNews extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 Text(
-                  '${newsDetails.title}',
+                  '${widget.newsDetails.title}',
                   style: context.style.titleLarge?.copyWith(
                     color: Colors.black,
                     fontWeight: FontWeight.w700,
@@ -42,7 +47,7 @@ class NewsDetailsMainNews extends StatelessWidget {
                 ),
                 const Divider(height: 40),
                 Text(
-                  '${newsDetails.details}',
+                  '${widget.newsDetails.details}',
                   style: context.style.bodyMedium,
                 ),
                 const SizedBox(height: 20),
@@ -56,22 +61,7 @@ class NewsDetailsMainNews extends StatelessWidget {
                     Text('142 likes', style: context.style.titleSmall)
                   ],
                 ),
-                Text('Comments', style: context.style.titleMedium),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    ProfilePhoto(imageUrl: imageUrl),
-                    const SizedBox(width: 4),
-                    Text('Akif Islamov', style: context.style.titleSmall)
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: Text(
-                    'I do not think this is true!',
-                    style: context.style.bodyMedium,
-                  ),
-                )
+                CommentsSection(newsDetails: widget.newsDetails),
               ],
             ),
           ),
