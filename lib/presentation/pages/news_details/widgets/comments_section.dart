@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:news_client/core/constants/colors.dart';
 import 'package:news_client/core/extension.dart';
 import 'package:news_client/data/get_news/response.dart';
 import 'package:news_client/presentation/pages/news_details/widgets/add_comment_field.dart';
 import '../../../../core/services/di.dart';
 import '../../../../data/comment/get_comment/response.dart';
 import '../../../../data/comment/repository.dart';
-import '../../../widgets/profile_photo.dart';
 
 class CommentsSection extends StatelessWidget {
   const CommentsSection({super.key, required this.newsDetails});
@@ -15,10 +15,12 @@ class CommentsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Comments', style: context.style.titleMedium),
-        const SizedBox(height: 20),
+        Text('Comments',
+            style: context.style.titleLarge
+                ?.copyWith(fontWeight: FontWeight.bold)),
+        const SizedBox(height: 10),
         AddCommentField(newsDetails: newsDetails),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         StreamBuilder(
           stream:
               getIt<ICommentRepository>().commentsStream(newsDetails.title!),
@@ -28,7 +30,7 @@ class CommentsSection extends StatelessWidget {
               return Column(
                 children: List.generate(
                   list.length,
-                  (index) => CommentItem(comment: list[index]),
+                  (index) => CommentItem(index: index, comment: list[index]),
                 ),
               );
             }
@@ -41,29 +43,36 @@ class CommentsSection extends StatelessWidget {
 }
 
 class CommentItem extends StatelessWidget {
-  const CommentItem({super.key, required this.comment});
+  const CommentItem({super.key, required this.index, required this.comment});
   final CommentDetails comment;
-
+  final int index;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            ProfilePhoto(imageUrl: imageUrl),
-            const SizedBox(width: 4),
-            Text('${comment.username}', style: context.style.titleSmall)
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.all(4),
-          child: Text(
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                '${comment.username}',
+                style: context.style.titleMedium?.copyWith(
+                  color: index.isEven ? primaryColor : const Color(0xffb8191f),
+                ),
+              ),
+              Text(
+                ' - 10.08.2023',
+                style: context.style.bodyMedium?.copyWith(color: Colors.black),
+              )
+            ],
+          ),
+          Text(
             '${comment.comment}',
             style: context.style.bodyMedium,
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 

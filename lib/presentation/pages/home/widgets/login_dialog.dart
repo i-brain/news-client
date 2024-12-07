@@ -119,21 +119,16 @@ class _LoginDialogState extends State<LoginDialog> {
                           },
                           builder: (context, state) {
                             return Center(
-                              child: ElevatedButton(
-                                onPressed: enableButton ? _onSubmit : null,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black,
-                                  disabledBackgroundColor: Colors.grey,
-                                ),
-                                child: state is LoginLoading
-                                    ? const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: 15,
-                                          vertical: 2,
-                                        ),
-                                        child: CircularProgressIndicator(),
-                                      )
-                                    : Padding(
+                              child: state is LoginLoading
+                                  ? const CircularProgressIndicator()
+                                  : ElevatedButton(
+                                      onPressed:
+                                          enableButton ? _onSubmit : null,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.black,
+                                        disabledBackgroundColor: Colors.grey,
+                                      ),
+                                      child: Padding(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 20,
                                           vertical: 8,
@@ -144,7 +139,7 @@ class _LoginDialogState extends State<LoginDialog> {
                                               ?.copyWith(color: Colors.white),
                                         ),
                                       ),
-                              ),
+                                    ),
                             );
                           },
                         ),

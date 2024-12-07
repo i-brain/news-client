@@ -147,15 +147,16 @@ class RegisterDialogState extends State<RegisterDialog> {
                           },
                           builder: (context, state) {
                             return Center(
-                              child: ElevatedButton(
-                                onPressed: enableButton ? _onSubmit : null,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black,
-                                  disabledBackgroundColor: Colors.grey,
-                                ),
-                                child: state is RegisterLoading
-                                    ? const CircularProgressIndicator()
-                                    : Padding(
+                              child: state is RegisterLoading
+                                  ? const CircularProgressIndicator()
+                                  : ElevatedButton(
+                                      onPressed:
+                                          enableButton ? _onSubmit : null,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.black,
+                                        disabledBackgroundColor: Colors.grey,
+                                      ),
+                                      child: Padding(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 20,
                                           vertical: 8,
@@ -166,7 +167,7 @@ class RegisterDialogState extends State<RegisterDialog> {
                                               ?.copyWith(color: Colors.white),
                                         ),
                                       ),
-                              ),
+                                    ),
                             );
                           },
                         ),

@@ -57,11 +57,35 @@ class MainHeader extends StatelessWidget {
                         showErrorDialog(context, state.message);
                       }
                     },
-                    child: TextButton(
-                      onPressed: () {
-                        context.read<LoginCubit>().logout();
-                      },
-                      child: const Text('Logout'),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.person),
+                        const SizedBox(width: 5),
+                        Text(
+                          '${user.displayName}',
+                          style: context.style.bodyLarge?.copyWith(
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        TextButton(
+                          onPressed: () {
+                            context.read<LoginCubit>().logout();
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(Icons.logout, color: Colors.white),
+                              const SizedBox(width: 5),
+                              Text(
+                                'Logout',
+                                style: context.style.bodyLarge?.copyWith(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   );
                 }
@@ -71,13 +95,35 @@ class MainHeader extends StatelessWidget {
                       onPressed: () {
                         LoginDialog.show(context);
                       },
-                      child: const Text('Login'),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.login, color: Colors.white),
+                          const SizedBox(width: 5),
+                          Text(
+                            'Login',
+                            style: context.style.bodyLarge?.copyWith(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     TextButton(
                       onPressed: () {
                         RegisterDialog.show(context);
                       },
-                      child: const Text('Register'),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.person_add_alt, color: Colors.white),
+                          const SizedBox(width: 5),
+                          Text(
+                            'Register',
+                            style: context.style.bodyLarge?.copyWith(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 );

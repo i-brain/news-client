@@ -51,16 +51,6 @@ class _NewsDetailsMainNewsState extends State<NewsDetailsMainNews> {
                   style: context.style.bodyMedium,
                 ),
                 const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.favorite_border),
-                        color: Colors.black),
-                    Text('142 likes', style: context.style.titleSmall)
-                  ],
-                ),
                 CommentsSection(newsDetails: widget.newsDetails),
               ],
             ),

@@ -37,29 +37,32 @@ class _AddCommentFieldState extends State<AddCommentField> {
       builder: (context, snapshot) {
         final user = snapshot.data;
         if (user != null) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomTextField(
-                controller: _commentController,
-                hint: 'Add comment',
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  final username =
-                      FirebaseAuth.instance.currentUser!.displayName!;
-                  final request = AddCommentRequest(
-                    id: widget.newsDetails.title!,
-                    comment: _commentController.text,
-                    username: username,
-                  );
-                  context.read<AddCommentCubit>().addComment(request);
-                  _commentController.clear();
-                },
-                child: const Text('Send'),
-              ),
-            ],
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomTextField(
+                  controller: _commentController,
+                  hint: 'Add comment',
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    final username =
+                        FirebaseAuth.instance.currentUser!.displayName!;
+                    final request = AddCommentRequest(
+                      id: widget.newsDetails.title!,
+                      comment: _commentController.text,
+                      username: username,
+                    );
+                    context.read<AddCommentCubit>().addComment(request);
+                    _commentController.clear();
+                  },
+                  child: const Text('Send'),
+                ),
+              ],
+            ),
           );
         }
         return const SizedBox.shrink();

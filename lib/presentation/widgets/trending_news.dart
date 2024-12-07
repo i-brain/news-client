@@ -95,39 +95,17 @@ class _TrendingNewsItem extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${newsDetails.title}',
-                      style: context.style.titleMedium?.copyWith(
-                        color: Colors.black,
-                      ),
-                      maxLines: 2,
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        const Icon(
-                          Icons.favorite,
-                          color: Colors.grey,
-                          size: 18,
-                        ),
-                        const SizedBox(width: 5),
-                        Text(
-                          '467 likes',
-                          style: context.style.bodyMedium
-                              ?.copyWith(color: Colors.grey),
-                        )
-                      ],
-                    ),
-                  ],
+                child: Text(
+                  '${newsDetails.title}',
+                  style: context.style.titleMedium?.copyWith(
+                    color: Colors.black,
+                  ),
+                  maxLines: 2,
                 ),
               )
             ],
           ),
-          const Divider(height: 40, color: Colors.grey)
+          const Divider(height: 30, color: Colors.grey)
         ],
       ),
     );
