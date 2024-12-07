@@ -47,10 +47,8 @@ class _AddCommentFieldState extends State<AddCommentField> {
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-                  final username = FirebaseAuth.instance.currentUser?.email
-                          ?.split('@')
-                          .first ??
-                      "null username";
+                  final username =
+                      FirebaseAuth.instance.currentUser!.displayName!;
                   final request = AddCommentRequest(
                     id: widget.newsDetails.title!,
                     comment: _commentController.text,

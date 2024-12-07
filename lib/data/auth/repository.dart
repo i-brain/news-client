@@ -22,11 +22,13 @@ class AuthRepository implements IAuthRepository {
     );
     User? user = credential.user;
     if (user != null) {
+      user.updateDisplayName(reuqest.username);
       return collectionRef.doc(user.uid).set({
         'username': reuqest.username,
         'email': reuqest.email,
         'password': reuqest.password,
         'id': user.uid,
+        'role': 'user',
       });
     }
     throw Exception('Firebase server error. Try again later');
